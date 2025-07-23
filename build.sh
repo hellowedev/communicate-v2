@@ -1,6 +1,8 @@
 #!/usr/bin/env bash 
 set -o errexit
 
+pip install --upgrade setuptools wheel
+
 # Modify this line as needed for your package manager (pip, poetry, etc.)
 pip install -r requirements.txt
 
