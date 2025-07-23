@@ -13,6 +13,14 @@ import os
 from pathlib import Path
 from modules.environment_manager import Env
 
+LOGGING = {
+    "version": 1,
+    'disable_existing_loggers': False,
+    "root": {
+        "level": "DEBUG"
+    }
+}
+
 # Start: Production conditional code block
 environment_variables = Env()
 if os.environ.get("APP_ENVIRONMENT",None)=="production":
