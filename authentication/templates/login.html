@@ -1,0 +1,66 @@
+{% extends "layout.html" %} {% block content %}
+<main class="w-screen h-screen flex flex-col items-center overflow-x-hidden overflow-y-auto p-16 bg-green-500">
+  <span class="flex flex-col bg-green-50 p-8 gap-8 w-[min(350px,100%)]">
+    <h1 class="text-6xl text-green-800">Login</h1>
+    <section
+      class="flex flex-col items-center bg-green-50 gap-4"
+    >
+      <form class="flex flex-col w-full" method="post">
+        <div class="flex flex-col gap-4 relative">
+          {% csrf_token %} 
+          {% for field in form %} 
+          {% if field.label != 'Cover image' %}
+          <fieldset class="flex flex-col gap-2 relative border border-green-600 p-2">
+            <label class="" for="{{ field.id_for_label }}"
+              >{{field.label}}</label
+            >
+            <span class="">{{field}}</span>
+          </fieldset>
+          {% else %}
+          <fieldset class="flex flex-col gap-2 relative">
+            <label class="text-lg/6" for="{{ field.id_for_label }}"
+              >{{field.label}}</label
+            >
+            <span
+              class="text-sm/6 border-2 rounded-lg p-4 gap-4 bg-green-50 border-green-300 flex flex-col w-full max-w-full"
+            >
+              {{field}}</span
+            >
+          </fieldset>
+          {% endif %} {% endfor %}
+          <button
+          class="w-full btn btn-md btn-success"
+          type="submit"
+        >
+          Submit
+        </button>
+        </div>
+      </form>
+        
+      
+      {% if form.errors %}
+      <ul class="border bg-error-content flex flex-col gap-[0.05rem]">
+        <li class="text-xl p-4 bg-error text-error-content">Error</li>
+        {% for field, errors in form.errors.items %}
+          <li class="p-4 bg-error text-error-content">
+            <span>{{field}}</span>
+            <ul class="flex flex-col gap-2">
+              {% for err in errors %}
+              <li>{{err}}</li>
+              {% endfor %}
+            </ul>
+          </li>
+        {% endfor %}
+        </ul>
+      {% else %}
+      <p></p>
+      {% endif %}
+      <span
+        class=""
+        >New user <a class="link link-secondary p-2"
+        href="{% url 'authentication:signup' %}">Sign up</span></a
+      >
+    </section>
+  </div>
+</main>
+{% endblock %}
