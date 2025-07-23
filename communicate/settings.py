@@ -12,14 +12,30 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os 
 from pathlib import Path
 from modules.environment_manager import Env
+import logging.config
+LOGGING_CONFIG= None
 
-LOGGING = {
-    "version": 1,
+logging.config.dictConfig({
+    'version': 1,
     'disable_existing_loggers': False,
-    "root": {
-        "level": "DEBUG"
+    'formatters': {
+        'console': {
+            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+        },
+    },
+    'root': {
+        'level': 'DEBUG',
+        'handlers': ['console']
     }
-}
+})
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'console',
+#         },
+#     },
+#     
+# })
 
 # Start: Production conditional code block
 environment_variables = Env()
