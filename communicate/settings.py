@@ -24,6 +24,7 @@ else:
     DEBUG = True
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_SECURE = False 
+
 # End: Production conditional code block
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,6 +38,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 ALLOWED_HOSTS = [os.environ.get("FRONTEND_DOMAIN_URL")]
+print(ALLOWED_HOSTS)
 
 # Application definition
 INSTALLED_APPS = [
