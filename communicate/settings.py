@@ -13,29 +13,6 @@ import os
 from pathlib import Path
 from modules.environment_manager import Env
 import logging.config
-LOGGING_CONFIG= None
-
-logging.config.dictConfig({
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'console': {
-            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
-        },
-    },
-    'root': {
-        'level': 'DEBUG',
-        'handlers': ['console']
-    }
-})
-#     'handlers': {
-#         'console': {
-#             'class': 'logging.StreamHandler',
-#             'formatter': 'console',
-#         },
-#     },
-#     
-# })
 
 # Start: Production conditional code block
 environment_variables = Env()
@@ -48,6 +25,24 @@ else:
     DEBUG = True
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_SECURE = False 
+
+if os.environ.get("APP_DEBUG_LOGS")=="true":
+    LOGGING_CONFIG= None
+    logging.config.dictConfig({
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'console': {
+                'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+            },
+        },
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+                'formatter': 'console',
+            },
+        },
+    })
 
 # End: Production conditional code block
 
