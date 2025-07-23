@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %} Communicate {% endblock %}</title>
+    <link
+      href="{% static 'src/tailwind_style_output.css' %}"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="bg-green-100 flex flex-col h-screen w-screen overflow-hidden overflow-y-auto"
+  >
+    <div class="navbar bg-green-50 text-green-950">
+      <div class="flex-none">
+        <button
+          class="btn btn-square rounded-none border-none bg-transparent"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            class="inline-block h-5 w-5 stroke-current"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+      </div>
+      <div class="flex-1">
+        <a class="btn bg-transparent border-none text-xl">Communicate</a>
+      </div>
+      <ul class="text-sm menu menu-horizontal bg-transparent">
+        <li>
+          <a href="{% url 'authentication:login' %}" class=""
+            >Sign up</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'authentication:login' %}" class=""
+            >Login</a
+          >
+        </li>
+        <li>
+          <a
+            href="{% url 'share:index' %}"
+            class=""
+            >Home</a
+          >
+        </li>
+        <li>
+          <form method="post" action="{% url 'authentication:logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="text-error-content">Logout</button>
+          </form>
+        </li>
+      </ul>
+    </div>
+    <div
+      class="bg-green-100 flex flex-col w-screen overflow-hidden overflow-y-auto"
+    >
+      {% block content %} {% endblock %}
+    </div>
+  </body>
+</html>
