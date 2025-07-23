@@ -3,3 +3,7 @@ __pycache__/
 migrations/
 *.env
 *.env.*
+media/
+node_modules/
+package-lock.json
+static/admin/
