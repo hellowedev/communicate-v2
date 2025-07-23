@@ -1,0 +1,67 @@
+{% if widget.is_initial %}
+<div
+  class="file-input-previous flex flex-col justify-start p-2 gap-2 bg-green-100"
+>
+  <span class="text-sm">{{ widget.initial_text }}</span>
+  <span class="file-input-previous-clear flex rounded-sm gap-2">
+    <a class="link link-primary pb-2" href="{{ widget.value.url }}"
+      >{{ widget.value }}</a
+    >
+  </span>
+  <div id="share-image-view-current" class="flex flex-col gap-2">
+    <span class="text-sm">Current image</span>
+    <img src="{{widget.value.url}}" />
+  </div>
+</div>
+
+{% if not widget.required %} {% endif %} {% endif %}
+<div
+  class="file-input-new-upload p-2 flex bg-green-100 gap-2 flex-col justify-start"
+>
+  <span class="text-sm">Upload image</span>
+
+  <input id="share-image-input" onchange="previewImage(event)" class="file-input
+  w-full text-sm" type="{{ widget.type }}" name="{{ widget.name }}" {% include
+  "django/forms/widgets/attrs.html" %}>
+  <div id="share-image-view" class="hidden flex-col gap-2">
+    <span class="text-sm">Image Upload preview</span>
+    <img />
+  </div>
+</div>
+<div
+  class="file-input-previous flex justify-between w-full py-2 gap-2 btn text-sm"
+>
+  <label class="break-words h-full" for="{{ widget.checkbox_id }}"
+    >Clear uploaded file
+  </label>
+  <input
+    type="checkbox"
+    class="radio radio-info"
+    name="{{ widget.checkbox_name }}"
+    id="{{ widget.checkbox_id }}"
+    {%
+    if
+    widget.attrs.disabled
+    %}
+    disabled{%
+    endif
+    %}{%
+    if
+    widget.attrs.checked
+    %}
+    checked{%
+    endif
+    %}
+  />
+</div>
+<script>
+  let previewImage = (e) => {
+    let filename = e.target.files[0];
+    if (filename) {
+      let element = document.querySelector("#share-image-view > img");
+      element.parentNode.classList.remove("hidden");
+      element.parentNode.classList.add("flex");
+      element.src = URL.createObjectURL(filename);
+    }
+  };
+</script>

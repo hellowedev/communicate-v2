@@ -1,0 +1,53 @@
+{% extends "layout.html" %} {% block content %}
+<main class="w-screen h-screen flex flex-col items-center overflow-x-hidden overflow-y-auto p-16 bg-green-500" >
+  <span class="flex flex-col bg-green-50 p-8 gap-8 w-[min(350px,100%)]">
+    <h1 class="text-6xl text-green-800">
+      {% if form.instance.pk %} Edit share {% else %} Create New Share {% endif %}
+    </h1>
+    <section class="flex flex-col items-center bg-green-50 gap-4">
+     
+      <form class="flex flex-col w-full"
+        method="post"
+        enctype="multipart/form-data"
+      >
+      <div class="flex flex-col gap-4 relative">
+          {% csrf_token %} 
+          {% for field in form %} 
+          {% if field.label != 'Cover image' %}
+          <fieldset class="flex flex-col overflow-hidden min-w-0 gap-2 relative border border-green-600 p-2">
+            <label class="" for="{{ field.id_for_label }}"
+              >{{field.label}}</label
+            >
+            <span class="overflow-auto">{{field}}</span>
+          </fieldset>
+          {% else %}
+          <fieldset class="flex flex-col gap-2 relative p-2 border-green-500 border">
+            <label class="" for="{{ field.id_for_label }}"
+              >{{field.label}}</label
+            >
+            <span
+              class="flex flex-col gap-2"
+            >
+              {{field}}</span
+            >
+          </fieldset>
+          {% endif %} {% endfor %}
+          <button
+            class="w-full btn btn-md btn-success"
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
+        
+      </form>
+
+      <a
+        class="link link-secondary"
+        href="{% url 'share:index' %}"
+        >Return to Latest shares</a
+      >
+    </section>
+  </span>
+</main>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "layout.html" %} {% block content %}
+<main
+  class="w-screen h-screen flex flex-col items-center overflow-x-hidden overflow-y-auto p-16 bg-green-500"
+>
+  <span
+    class="flex flex-col bg-green-50 p-8 gap-8 w-[min(450px,100%)] overflow-auto"
+  >
+    <h1 class="text-6xl text-green-800">Confirm deletion</h1>
+    <section
+      class="flex flex-col bg-green-50 border border-green-300 p-4 gap-4"
+    >
+      <form
+        class="flex relative flex-col gap-4"
+        method="post"
+      >
+        {% csrf_token %}
+        <span class="text-xl text-green-950"
+          >Are you sure to delete The
+          <span class="text-green-400">Share</span></span
+        >
+        <fieldset class="min-w-max flex gap-4">
+          <button class="btn btn-error btn-active">Delete Confirm</button>
+          <a href="{% url 'share:index' %}" class="btn btn-outline">Cancel</a>
+        </fieldset>
+      </form>
+    </section>
+  </span>
+</main>
+{% endblock %}
