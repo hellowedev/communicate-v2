@@ -71,7 +71,7 @@ A lightweight, open‑source “Share” app, that lets users publish posts with
 
 ---
 
-## 🤔 Roadmap & TODO
+## 📌 Roadmap & Todo
 
 1. **Fix image uploads**
 
