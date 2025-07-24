@@ -40,6 +40,6 @@ if [ -f "$CSS_INPUT" ]; then
   warn "File $CSS_INPUT already exists. Skipping creation."
 else
   touch "$CSS_INPUT"
-  echo -e '@import "tailwindcss";' > "$CSS_INPUT"
+  echo -e '@import "tailwindcss"; @plugin "daisyui"; input[type="text"] { @apply bg-green-100 outline-none p-2 border border-transparent hover:border-green-500;}' > "$CSS_INPUT"
   success "Created $CSS_INPUT with Tailwind directives."
 fi
