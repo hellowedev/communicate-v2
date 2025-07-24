@@ -1,6 +1,5 @@
-@import "tailwindcss";
-@plugin "daisyui";
-
-input[type="text"] {
+@import "tailwindcss"; 
+@plugin "daisyui"; 
+input[type="text"] { 
     @apply bg-green-100 outline-none p-2 border border-transparent hover:border-green-500;
 }
