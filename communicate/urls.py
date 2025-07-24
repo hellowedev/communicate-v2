@@ -22,6 +22,7 @@ from django.urls import path, include
 from django.contrib.auth.urls import views as auth_views
 from django.views.generic.base import RedirectView
 import os 
+
 urlpatterns = [
     path('', RedirectView.as_view(url="/auth/signup")),
     path('admin/', admin.site.urls),
@@ -29,5 +30,6 @@ urlpatterns = [
     path('auth/',include('authentication.urls')),
     path('shares/',include('share.urls'))
 ]
-if os.environ.get("APP_ENVIRONMENT")=="development": 
+if settings.DEBUG: 
     urlpatterns += static(settings.MEDIA_URL, document_root =settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root =settings.STATIC_ROOT)

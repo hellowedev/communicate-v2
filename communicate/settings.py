@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os 
 from pathlib import Path
 from modules.environment_manager import Env
-import logging.config
+import logging.config 
 
 # Start: Production conditional code block
 environment_variables = Env()
@@ -21,9 +21,9 @@ if os.environ.get("APP_ENVIRONMENT",None)=="production":
     CSRF_COOKIE_SECURE = True 
     SESSION_COOKIE_SECURE = True 
 else: 
-    environment_variables.read_env('./.env')
+    environment_variables.read_env('./.env') 
     DEBUG = True
-    SESSION_COOKIE_SECURE = False
+    SESSION_COOKIE_SECURE = False 
     CSRF_COOKIE_SECURE = False 
 
 if os.environ.get("APP_DEBUG_LOGS")=="true":
