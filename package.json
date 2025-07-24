@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "tailwind:watch": "./tailwind-start.sh ./css/global.css ./static/css/tailwind_style_output.css"
+  },
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.11",
     "daisyui": "^5.0.46",
