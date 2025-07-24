@@ -3,6 +3,7 @@ __pycache__/
 migrations/
 *.env
 *.env.*
+!.env.example
 media/
 node_modules/
 package-lock.json
